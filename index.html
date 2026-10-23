@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dance Workshop Management System</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f5f0ff;
+      color: #29213d;
+    }
+    header {
+      background: #673ab7;
+      color: white;
+      text-align: center;
+      padding: 25px 10px;
+    }
+    nav {
+      background: #452080;
+      padding: 12px;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      margin: 10px;
+      text-decoration: none;
+    }
+    main {
+      max-width: 850px;
+      margin: 25px auto;
+      padding: 20px;
+    }
+    .card {
+      background: white;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px #ddd;
+    }
+    input, select, button {
+      box-sizing: border-box;
+      width: 100%;
+      padding: 12px;
+      margin: 7px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      background: #673ab7;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover { background: #452080; }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #452080;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Dance Workshop Management System</h1>
+    <p>Manage workshops and student registrations</p>
+  </header>
+
+  <nav>
+    <a href="#workshops">Workshops</a>
+    <a href="#register">Register</a>
+    <a href="#students">Students</a>
+  </nav>
+
+  <main>
+    <section class="card" id="workshops">
+      <h2>Available Workshops</h2>
+      <p>Classical Dance</p>
+      <p>Western Dance</p>
+      <p>Hip-Hop Dance</p>
+      <p>Contemporary Dance</p>
+    </section>
+
+    <section class="card" id="register">
+      <h2>Student Registration</h2>
+      <form id="registrationForm">
+        <input id="studentName" placeholder="Student Name" required>
+        <input id="studentEmail" type="email" placeholder="Email Address" required>
+        <select id="danceType" required>
+          <option value="">Select Dance Workshop</option>
+          <option>Classical Dance</option>
+          <option>Western Dance</option>
+          <option>Hip-Hop Dance</option>
+          <option>Contemporary Dance</option>
+        </select>
+        <button type="submit">Register Student</button>
+      </form>
+      <p id="message"></p>
+    </section>
+
+    <section class="card" id="students">
+      <h2>Registered Students</h2>
+      <ul id="studentList"></ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>Dance Workshop Management System</p>
+  </footer>
+
+  <script>
+    const form = document.getElementById('registrationForm');
+    const list = document.getElementById('studentList');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const name = document.getElementById('studentName').value.trim();
+      const email = document.getElementById('studentEmail').value.trim();
+      const dance = document.getElementById('danceType').value;
+
+      if (!name || !email || !dance) return;
+
+      const item = document.createElement('li');
+      item.textContent = name + ' — ' + dance;
+      list.appendChild(item);
+
+      document.getElementById('message').textContent =
+        'Registration successful for ' + name + '!';
+
+      form.reset();
+    });
+  </script>
+</body>
+</html>
